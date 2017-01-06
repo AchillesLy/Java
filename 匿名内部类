@@ -1,0 +1,58 @@
+匿名内部类就是内部类的简写格式
+必须有前提：
+内部类，必须继承或者实现一个外部类或者接口。
+匿名内部类就是内部类没名字（而不是说没有他爹的名字），前提就是得有一个明确的爹
+Inter in = new inter（）{
+	 void.show()
+	{
+		sysout
+	}；
+
+}；
+In.show1();
+In.show2();
+这样就可以多次调用了
+new不能new抽象类，但是把抽象方法复写了，似乎可以创建对象 
+
+New demo（）
+{
+new了一个demo类的子类对象
+	 void.show()
+	{
+		sysout
+	}.show();//这是对象调用子类，天经地义
+}
+匿名内部类：其实就是一个匿名<子类对象>。
+
+通常使用场景之一：
+当函数参数是接口类型的时候，而且，接口中的方法，不超过三个
+可以用匿名内部类作为实际参数进行传递。
+Class InnerClassDemo5{
+	Public static void main (String [] args ){
+		sysout；
+		Show(new Inter(){
+			Public viod show1(){}
+			Public void show2(){}
+		});
+	}
+}
+
+	Public static void show(Inter in){
+		In.show1();
+		In.show2();
+	}
+注意:
+Class outer{
+	Void method（）{
+		Object obj = new object（）{
+			Public void show（）{
+				sysout（）；
+			}
+		}；
+		Obj.show()
+		/*
+			这个不能这样使用，因为匿名内部类，这个子类对象向上转型为了object类
+			这样就不能再使用子类特有的方法了
+		*/
+	}
+}
