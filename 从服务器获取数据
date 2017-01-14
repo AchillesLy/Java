@@ -1,0 +1,38 @@
+/从服务器获取数据，显示在app上
+privatevoidgetDateFromService(){
+//XUtils
+HttpUtilsutils=newHttpUtils();
+//原声模拟器10.0.2.2，genymotion10.0.3.2
+utils.send(HttpRequest.HttpMethod.GET,"http://10.0.2.2:8080/zhbj/categories.json",newRequestCallBack<String>(){
+publicstaticfinalStringTAG="NewsCenterPager";
+ 
+@Override
+publicvoidonSuccess(ResponseInfo<String>responseInfo){
+Stringresult=responseInfo.result;
+Log.i(TAG,"服务器数据："+result);
+processData();//注意这里加一个result！！
+}
+ 
+@Override
+publicvoidonFailure(HttpExceptionerror,Stringmsg){
+error.printStackTrace();
+Toast.makeText(mActivity,msg,Toast.LENGTH_SHORT).show();
+}
+});
+}
+ 
+processData(){
+1,
+用new Gson对象，调用其方法
+2，
+新建一个类
+数据类的封装
+ 这个得自己试着封装一下
+逢{}创建对象，逢[]创建集合
+}
+新闻中心如何把数据传递给侧边栏
+1，先找到mainActivity,多态
+2，然后通过mainActivity，新建方法找到侧边栏，碎片管理器来代替
+3， 用标签来找！
+4，然后再回到新闻中心调用mainactivity 的方法
+5，再setMenuData传递数据
