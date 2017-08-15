@@ -1,0 +1,52 @@
+AVA1.5支持了一种新的参数类型--可变长度参数列表，格式是类型后面加...，例如String...、Object...等
+这个和我们熟知的Object[]数组参数有些区别，且更加方便灵活些，下面简单介绍下：
+先写一个熟知的传统数组参数方法
+[java] view plaincopy 
+
+public class Param {  
+  
+    public static void printParam(int i,String[] str){  
+        if(str.length == 0){  
+            System.out.println("无参数的printParams()方法");  
+        }  
+        else{  
+            for (String string : str) {  
+                System.out.println("带参的printParams("+string+")方法");  
+            }  
+        }  
+    }  
+      
+    public static void main(String[] args) {  
+        printParam(2,new String[]{"A","B","C"});  
+    }  
+}  
+在调用printParam时，我们无论如何都要传递一个String类型的数组过去，然而我们在工作时有时候会遇到需要这个方法，但是确实又没必要传递所有参数，
+如同上面例子，我可能只需要传递int类型参数，但是String[]参数我并没有，这样我任然要传递一个空的String[]否则会报错。所以这种参数很死板，用起来不方便。
+但是Stirng...就不需要这么麻烦了，看下面这个方法：
+[java] view plaincopy 
+
+public class Params {  
+  
+    public static void printParams(String... str){  
+        if(str.length == 0){  
+            System.out.println("无参数的printParams()方法");  
+        }  
+        else{  
+            for (String string : str) {  
+                System.out.println("带参的printParams("+string+")方法");  
+            }  
+        }  
+    }  
+      
+    public static void main(String[] args) {  
+        printParams();  
+        printParams("a","b","c");  
+        printParams(new String[]{"A","B","C"});  
+    }  
+}  
+这里我们可以随意调用，有不带参数的printParams()，而且不报错，另外他还支持2种不同的写法可以多个Stirng的传递，也可以单个String[]数组的传递
+这位我们提供了很大的方便。
+
+这里需要注意的是：
+一个类里面如果有了printParams(String... str)方法，就不能存在printParams(String[] str)方法，但是可以存在printParams()方法。
+而且如果我们执行printParams()方法时，会优先查找printParams()方法，只有在printParams()方法不存在的时候才会去找printParams(String... str)方法
