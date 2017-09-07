@@ -1,0 +1,35 @@
+在java的逻辑运算符中，有这么四类：&&（短路与），&，|，||（短路或）。
+
+&&和&都是表示与，区别是&&只要第一个条件不满足，后面条件就不再判断。而&要对所有的条件都进行判断。
+看下面的程序：
+public static void main(String[] args) {  
+        // TODO Auto-generated method stub  
+        if((23!=23)&&(100/0==0)){  
+            System.out.println("运算没有问题。");  
+        }else{  
+        <span style="white-space:pre">    </span>System.out.println("没有报错");  
+        }  
+    }  
+    输出的是“没有报错”。而将&&改为&就会如下错误：
+    Exception in thread "main" java.lang.ArithmeticException: / by zero  
+    原因是：&&时判断第一个条件为false，后面的100/0==0这个条件就没有进行判断。
+        &时要对所有的条件进行判断，所以会对后面的条件进行判断，所以会报错。
+
+
+
+
+   ||和|都是表示“或”，区别是||只要满足第一个条件，后面的条件就不再判断，而|要对所有的条件进行判断。
+看下面的程序：
+    public static void main(String[] args) {  
+        // TODO Auto-generated method stub  
+        if((23==23)||(100/0==0)){  
+            System.out.println("运算没有问题。");  
+        }else{  
+        <span style="white-space:pre">    </span>System.out.println("没有报错");  
+        }  
+    }  
+    此时输出“运算没有问题”。若将||改为|则会报错。
+
+
+原因是：||判断第一个条件为true，后面的条件就没有进行判断就执行了括号中的代码，而|要对所有的条件进行判断，
+所以会报错。
